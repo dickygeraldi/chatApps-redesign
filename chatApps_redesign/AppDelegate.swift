@@ -11,11 +11,35 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    
+    var dataCore = AuthDataCore()
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let response = dataCore.retrieveData(entity: "Users")
+        print(response.token)
+        
+        if response.token != "" {
+            
+            let home = HomeVC()
+            let navigation = UINavigationController(rootViewController: home)
+            
+            let frame = UIScreen.main.bounds
+            window = UIWindow(frame: frame)
+            window!.rootViewController = navigation
+            
+        } else {
+            let home = LoginVC()
+            let navigation = UINavigationController(rootViewController: home)
+            
+            let frame = UIScreen.main.bounds
+            window = UIWindow(frame: frame)
+            window!.rootViewController = navigation
+        }
+        
+        window!.makeKeyAndVisible()
         return true
     }
 
