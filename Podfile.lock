@@ -1,0 +1,16 @@
+PODS:
+  - MHLoadingButton (0.0.1)
+
+DEPENDENCIES:
+  - MHLoadingButton
+
+SPEC REPOS:
+  trunk:
+    - MHLoadingButton
+
+SPEC CHECKSUMS:
+  MHLoadingButton: c5db7794ef1adff7ff7fa398c5450d081d33b320
+
+PODFILE CHECKSUM: 395ccb232d3f652b7209d299c155a81ed439bdf8
+
+COCOAPODS: 1.9.1

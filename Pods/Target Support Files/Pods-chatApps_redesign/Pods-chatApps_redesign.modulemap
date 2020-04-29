@@ -1,0 +1,6 @@
+framework module Pods_chatApps_redesign {
+  umbrella header "Pods-chatApps_redesign-umbrella.h"
+
+  export *
+  module * { export * }
+}
