@@ -78,21 +78,29 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            let data = dataTopic[indexPath.row]
-            
-            dataTopic.remove(at: indexPath.row)
-            
-            homeCoreData.deleteData(entity: "DataTopics", uniqueId: data.idData)
-            topicTableView.beginUpdates()
-            topicTableView.deleteRows(at: [indexPath], with: .automatic)
-            topicTableView.endUpdates()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let data = self.dataTopic[indexPath.row]
+
+            self.dataTopic.remove(at: indexPath.row)
+
+            self.homeCoreData.deleteData(entity: "DataTopics", uniqueId: data.idData)
+            self.topicTableView.beginUpdates()
+            self.topicTableView.deleteRows(at: [indexPath], with: .automatic)
+            self.topicTableView.endUpdates()
         }
+
+//        let share = UITableViewRowAction(style: .normal, title: "edit") { (action, indexPath) in
+//            // share item at indexPath
+//        }
+//
+//        share.backgroundColor = UIColor.blue
+
+        return [delete]
     }
+
 }

@@ -41,7 +41,31 @@ class ChatVC: UIViewController {
         
         chatMessage = checkingMessage()
         
-        print(chatMessage[0].message)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatVC.backgroundTap))
+        self.dataChat.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func backgroundTap(_ sender: UITapGestureRecognizer) {
+        // go through all of the textfield inside the view, and end editing thus resigning first responder
+        // ie. it will trigger a keyboardWillHide notification
+        self.view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= (40 + keyboardSize.height)
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
     override func viewDidLoad() {

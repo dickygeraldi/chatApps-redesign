@@ -57,7 +57,7 @@ class RegistrationVC: UIViewController {
         let response = ApiAuthentication.Registration(username: username, password: password)
         
         if response.code == "HV-00" {
-            let alert = loadingView.showAlert(message: "Pendaftaran Berhasil")
+            let alert = loadingView.showAlertSuccess(message: "Pendaftaran Berhasil")
             self.present(alert, animated: true, completion: nil)
         } else {
             
