@@ -24,7 +24,7 @@ class APIAuth {
             "password": password
         ]
         
-        var request = URLRequest(url: URL(string: "http://localhost:7990/v1/user-services/register-account-harvesting")!,timeoutInterval: Double.infinity)
+        var request = URLRequest(url: URL(string: "https://proto-user-services.herokuapp.com/v1/user-services/register-account-harvesting")!,timeoutInterval: Double.infinity)
         
         let jsonData = try! JSONSerialization.data(withJSONObject: parameters, options: [])
         
@@ -73,7 +73,7 @@ class APIAuth {
             "password": password
         ]
         
-        var request = URLRequest(url: URL(string: "http://localhost:7990/v1/user-services/login-account-harvesting")!,timeoutInterval: Double.infinity)
+        var request = URLRequest(url: URL(string: "https://proto-user-services.herokuapp.com/v1/user-services/login-account-harvesting")!,timeoutInterval: Double.infinity)
 
         let jsonData = try! JSONSerialization.data(withJSONObject: parameters, options: [])
 
